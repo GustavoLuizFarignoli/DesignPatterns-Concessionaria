@@ -1,5 +1,8 @@
 package Singleton;
-public class Login {
+
+import java.io.Serializable;
+
+public class Login implements Serializable {
     public String email, senha;
 
     public Login(String email, String senha){
@@ -16,5 +19,11 @@ public class Login {
                 ", senha='" + senha + '\'' +
                 '}';
     }
+    public String getEmail() {
+        return email;
+    }
 
+    public String getSenha() {
+        return senha;
+    }
 }

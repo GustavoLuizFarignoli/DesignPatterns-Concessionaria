@@ -1,3 +1,4 @@
+import Facade.LoginFacade;
 import Singleton.LoginSingleton;
 import java.util.Scanner;
 
@@ -6,35 +7,43 @@ public class Main {
         int op = 0;
         Scanner teclado = new Scanner(System.in);
 
-        while(op != 4){
-            print("1-Login\n2-Verificar Login\n3-Logout\n4-Sair\n");
+        while(op != 5){
+            System.out.println("1-Login\n2-Verificar Login\n3-Logout\n4-Fazer Cadastro\n5-Sair\n");
             op = teclado.nextInt();
             switch(op){
                 case 1:
-                    print("Digite o seu email: ");
+                    System.out.println("Digite o seu email: ");
                     teclado.nextLine();
                     String email = teclado.nextLine();
-                    print("Digite sua senha: ");
+                    System.out.println("Digite sua senha: ");
                     String senha = teclado.nextLine();
-                    LoginSingleton.getInstance(email, senha);
+                    LoginFacade.logar(email,senha);
                     break;
                 case 2:
                     if(LoginSingleton.instancia != null) {
-                        print(LoginSingleton.instancia.toString());
+                        System.out.println(LoginSingleton.instancia);
                     } else{
-                        print("Usuário não logado!");
+                        System.out.println("Usuário não logado!");
                     }
                     break;
                 case 3:
                     LoginSingleton.logout();
+                    break;
                 case 4:
+                    System.out.println("Digite o seu email: ");
+                    teclado.nextLine();
+                    String emailcad = teclado.nextLine();
+                    System.out.println("Digite sua senha: ");
+                    String senhacad = teclado.nextLine();
+                    LoginFacade.cadastrar(emailcad,senhacad);
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    LoginFacade.debug();
                     break;
             }
         }
 
-    }
-
-    public static void print(String mensagem){
-        System.out.println(mensagem);
     }
 }
