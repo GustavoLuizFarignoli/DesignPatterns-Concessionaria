@@ -1,3 +1,5 @@
+import Auxiliar.Estoque;
+import Facade.EstoqueFacade;
 import Facade.LoginFacade;
 import Singleton.LoginSingleton;
 import java.util.Scanner;
@@ -6,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         boolean running = true;
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
         while(running) {
             if (LoginSingleton.instancia == null) {
@@ -58,22 +61,30 @@ public class Main {
 
     public static void menu (Scanner teclado){
         int op = 0;
-        System.out.println("1-Ver Estoque\n2-Realizar Compra\n3-Realizar Aluguel\n4-Fazer Logout");
+        System.out.println("1-Ver Estoque\n2-Realizar Compra\n3-Realizar Aluguel\n4-Simular Desvalorização\n5-Fazer Logout");
         op = teclado.nextInt();
         switch(op) {
             case 1:
-                System.out.println("Estoque");
+                EstoqueFacade.visualizarestoque();
                 break;
             case 2:
                 System.out.println("Compra");
                 break;
             case 3:
-                System.out.println("Aluguel");
+                System.out.println("Digite o modelo a ser alugado: ");
+                teclado.nextLine();
+                String modelo = teclado.nextLine();
+                EstoqueFacade.alugarautomovel(modelo);
                 break;
             case 4:
+                System.out.println("Simulando");
+                break;
+            case 5:
                 System.out.println("Realizando log out...");
                 LoginSingleton.logout();
                 break;
+            case 6:
+                EstoqueFacade.debug();
         }
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
     }
