@@ -17,7 +17,7 @@ public abstract class Automovel implements Serializable {
         this.disponivel = disponivel;
     }
 
-    abstract void simular(int anos);
+    abstract public void simular(int anos);
 
     public String getMarca() {
         return Marca;

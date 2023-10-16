@@ -68,16 +68,24 @@ public class Main {
                 EstoqueFacade.visualizarestoque();
                 break;
             case 2:
-                System.out.println("Compra");
-                break;
-            case 3:
                 System.out.println("Digite o modelo a ser alugado: ");
                 teclado.nextLine();
-                String modelo = teclado.nextLine();
-                EstoqueFacade.alugarautomovel(modelo);
+                String modelo1 = teclado.nextLine();
+                EstoqueFacade.comprarautomovel(modelo1);
+                break;
+            case 3:
+                System.out.println("Digite o modelo a ser comprado: ");
+                teclado.nextLine();
+                String modelo2 = teclado.nextLine();
+                EstoqueFacade.alugarautomovel(modelo2);
                 break;
             case 4:
-                System.out.println("Simulando");
+                System.out.println("Digite o modelo para simular: ");
+                teclado.nextLine();
+                String modelo3 = teclado.nextLine();
+                System.out.println("Digite a quantidade de anos para envelhecer: ");
+                int ano = teclado.nextInt();
+                EstoqueFacade.simularvalorização(modelo3,ano);
                 break;
             case 5:
                 System.out.println("Realizando log out...");

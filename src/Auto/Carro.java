@@ -10,16 +10,21 @@ public class Carro extends Automovel implements Serializable {
         this.cavalos = cavalos;
     }
     @Override
-    void simular(int anos) {
+    public void simular(int anos) {
         double taxa;
-        if ((getIdade() + anos) <= 3){
-            taxa = 0.05;
-        } else if ((getIdade() + anos) <= 8){
-            taxa = 0.07;
-        } else {
-            taxa = 0.12;
+        double valor = getValor();
+        double idade = getIdade();
+        for (int i = 0; i < anos; i++){
+            if (idade <= 3){
+                taxa = 0.05;
+            } else if (idade <= 8){
+                taxa = 0.07;
+            } else {
+                taxa = 0.12;
+            }
+            idade += 1;
+            valor -= valor * taxa;
         }
-        double valor = getValor() - (getValor() * taxa);
         System.out.println("O valor do carro seria R$" + valor);
     }
 

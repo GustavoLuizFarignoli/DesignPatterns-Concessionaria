@@ -11,16 +11,21 @@ public class Moto extends Automovel implements Serializable {
     }
 
     @Override
-    void simular(int anos) {
-        double Taxa = 0;
-        if (getIdade() <= 3){
-            Taxa = 0.03;
-        } else if (getIdade() <= 5){
-            Taxa = 0.05;
-        } else {
-            Taxa = 0.10;
+    public void simular(int anos) {
+        double taxa = 0;
+        double valor = getValor();
+        double idade = getIdade();
+        for (int i = 0; i < anos; i++){
+            if (idade <= 3){
+                taxa = 0.03;
+            } else if (idade <= 5){
+                taxa = 0.05;
+            } else {
+                taxa = 0.10;
+            }
+            idade += 1;
+            valor -= valor * taxa;
         }
-        double valor = getValor()  - (getValor() * Taxa);
         System.out.println("O valor do moto seria R$" + valor);
     }
 
