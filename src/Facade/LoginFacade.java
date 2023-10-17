@@ -1,6 +1,7 @@
 package Facade;
 
 import Auxiliar.BancoLogin;
+import Auxiliar.Emailadapter;
 import Auxiliar.Serializador;
 import Singleton.Login;
 import Singleton.LoginSingleton;
@@ -12,12 +13,14 @@ public class LoginFacade {
     public static void cadastrar(String email, String senha){
         BancoLogin bancoLogin = leitura();
         Login login = bancoLogin.findcadastro(email);
-        if (login == null){
+        if (login == null && Emailadapter.emailvalido(email)){
             Login cadastro = new Login(email, senha);
             bancoLogin.addcadastro(cadastro);
             gravar(bancoLogin);
-        } else {
+        } else if (Emailadapter.emailvalido(email)) {
             System.out.println("Esse email já foi cadastrado");
+        } else {
+            System.out.println("Esse email não é válido, por favor use uma conta de gmail ou outlook");
         }
     }
 
